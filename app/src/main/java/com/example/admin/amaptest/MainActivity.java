@@ -1,6 +1,8 @@
 package com.example.admin.amaptest;
 
+import android.graphics.Color;
 import android.os.health.UidHealthStats;
+import android.provider.SyncStateContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.maps.offlinemap.OfflineMapCity;
 import com.amap.api.maps.offlinemap.OfflineMapManager;
 
@@ -93,7 +96,23 @@ public class MainActivity extends FragmentActivity implements LocationSource {
             }
         };
         //绑定信息窗绑定事件
-        aMap.setOnInfoWindowClickListener(windowListener);
+        /*aMap.setOnInfoWindowClickListener(windowListener);
+        aMap.addPolygon(new PolygonOptions().addAll(Rect(new LatLng(
+                31.238068, 121.501654), 1, 1)).strokeColor(Color.RED).strokeWidth(2));
+        /*PolygonOptions options = new PolygonOptions();
+        int numPoints = 400;
+        float semiHorizontalAxis = 5f;
+        float semVerticalAxis = 2.5f;
+        double phase = 2 * Math.PI / numPoints;
+        for (int i = 0; i <= numPoints; i++)
+        {
+            options.add(new LatLng((SyncStateContract.Constants.BEIJING.latitude) + semiHorizontalAxis
+            * Math.sin(i * phase), SyncStateContract.Constants.BEIJING.latitude + semiHorizontalAxis
+            *Math.cos(i * phase)));
+        }
+        //绘制一个椭圆
+        polygon*/
+
 
 
 
