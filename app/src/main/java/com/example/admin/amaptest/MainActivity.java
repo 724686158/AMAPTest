@@ -32,6 +32,7 @@ public class MainActivity extends FragmentActivity implements LocationSource {
         mUiSetting.setMyLocationButtonEnabled(true);
         aMap.setMyLocationEnabled(true);
         mUiSetting.setScaleControlsEnabled(true);
+        mUiSetting.setZoomGesturesEnabled(false);
 
     }
 
