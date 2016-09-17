@@ -5,9 +5,12 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.SupportMapFragment;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.offlinemap.OfflineMapCity;
 import com.amap.api.maps.offlinemap.OfflineMapManager;
 
@@ -33,6 +36,14 @@ public class MainActivity extends FragmentActivity implements LocationSource {
         aMap.setMyLocationEnabled(true);
         mUiSetting.setScaleControlsEnabled(true);
         mUiSetting.setZoomGesturesEnabled(false);
+
+
+        aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(
+                new LatLng(39.977290, 116.337000),
+                6,
+                30,
+                0)
+        ));
 
     }
 
