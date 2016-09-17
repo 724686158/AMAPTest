@@ -13,6 +13,10 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+        mMap.setMapType(AMap.MAP_TYPE_NORMAL);
+        mMap.setTrafficEnabled(true);
+
     }
 }
