@@ -3,6 +3,8 @@ package com.example.admin.amaptest;
 import android.os.health.UidHealthStats;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -11,6 +13,8 @@ import com.amap.api.maps.SupportMapFragment;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.offlinemap.OfflineMapCity;
 import com.amap.api.maps.offlinemap.OfflineMapManager;
 
@@ -18,6 +22,7 @@ public class MainActivity extends FragmentActivity implements LocationSource {
 
     private AMap aMap;
     private UiSettings mUiSetting;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,53 @@ public class MainActivity extends FragmentActivity implements LocationSource {
                 30,
                 0)
         ));
+
+        LatLng latLng = new LatLng(37.26, 116.16);
+        final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("HOME").snippet("this is my home"));
+        AMap.OnMarkerClickListener listener = new AMap.OnMarkerClickListener(){
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Toast.makeText(MainActivity.this, "This is my hometown", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        };
+        //绑定标注点击事件
+        aMap.setOnMarkerClickListener(listener);
+
+        AMap.OnMarkerDragListener dragListener = new AMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+                marker.setTitle("Dont DRAG START");
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+                marker.setTitle("Dont DRAG");
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                marker.setTitle("Dont DRAG END");
+            }
+        };
+        //绑定标记拖拽事件
+        aMap.setOnMarkerDragListener(dragListener);
+
+
+
+        //信息窗点击事件AMap.OnInfoWindowClickListener
+        AMap.OnInfoWindowClickListener windowListener = new AMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                marker.setTitle("don touch it");
+
+            }
+        };
+        //绑定信息窗绑定事件
+        aMap.setOnInfoWindowClickListener(windowListener);
+
+
 
     }
 
